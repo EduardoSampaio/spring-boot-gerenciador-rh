@@ -38,7 +38,7 @@ public class Telefone implements Serializable {
 		this.residencial = residencial;
 		this.celular = celular;
 		this.profissional = profissional;
-	}
+	}	
 
 	public Long getId() {
 		return id;
