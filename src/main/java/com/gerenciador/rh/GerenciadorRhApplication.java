@@ -8,6 +8,7 @@ public class GerenciadorRhApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(GerenciadorRhApplication.class, args);
+
 	}
 
 }

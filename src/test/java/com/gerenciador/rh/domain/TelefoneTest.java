@@ -17,7 +17,7 @@ public class TelefoneTest {
 	}
 	
 	@Test
-	public void test_criando_novo_telefone() {
+	public void test_construtor() {
 		telefone = new Telefone(null, "3333-3333", "9999-8888", "5555-5555");
 		
 		assertNull(telefone.getId());

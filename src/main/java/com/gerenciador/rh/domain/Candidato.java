@@ -52,6 +52,32 @@ public class Candidato implements Serializable {
 	
 	public Candidato() {
 	}
+	
+	
+	/***
+	 * 
+	 * @param id
+	 * @param nome
+	 * @param sobrenome
+	 * @param email
+	 * @param senha
+	 * @param pretensaoSalarial
+	 * @param fotoUrl
+	 * @param curriculoUrl
+	 */
+	public Candidato(Long id, String nome, String sobrenome, String email, String senha, Double pretensaoSalarial,
+			String fotoUrl, String curriculoUrl) {
+		this.id = id;
+		this.nome = nome;
+		this.sobrenome = sobrenome;
+		this.email = email;
+		this.senha = senha;
+		this.pretensaoSalarial = pretensaoSalarial;
+		this.fotoUrl = fotoUrl;
+		this.curriculoUrl = curriculoUrl;
+	}
+
+
 
 	public String getCurriculoUrl() {
 		return curriculoUrl;
@@ -98,6 +124,18 @@ public class Candidato implements Serializable {
 		}
 		return telefone;
 	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+
 
 	public void setCurriculoUrl(String curriculoUrl) {
 		this.curriculoUrl = curriculoUrl;

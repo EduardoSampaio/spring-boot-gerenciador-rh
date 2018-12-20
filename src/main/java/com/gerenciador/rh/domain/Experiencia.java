@@ -26,7 +26,7 @@ public class Experiencia implements Serializable{
 	@Column(name = "empresa", length = 30, nullable = false)
 	private String empresa;
 	@Column(name = "atual",nullable = false)
-	private Boolean atual;
+	private Boolean atual = Boolean.FALSE;
 	@Temporal(TemporalType.DATE)
 	@Column(name = "inicio",nullable = false)
 	private Date inicio;

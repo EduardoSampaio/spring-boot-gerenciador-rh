@@ -3,12 +3,14 @@ package com.gerenciador.rh.service;
 import java.util.List;
 
 import com.gerenciador.rh.domain.Candidato;
+import com.gerenciador.rh.dtos.CandidatoCriarNovoDTO;
+import com.gerenciador.rh.dtos.CandidatoDTO;
 
 public interface CandidatoService {
 
-	Candidato insert(Candidato obj);
-	Candidato update(Candidato obj);
+	Candidato insert(CandidatoCriarNovoDTO obj);
+	Candidato update(CandidatoDTO obj);
 	void delete(Long id);
-	Candidato findById(Long id);
-	List<Candidato> findAll();
+	CandidatoDTO findById(Long id);
+	List<CandidatoDTO> findAll();
 }

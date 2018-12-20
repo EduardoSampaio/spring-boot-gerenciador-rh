@@ -7,5 +7,5 @@ import com.gerenciador.rh.domain.Candidato;
 
 @Repository
 public interface CandidatoRepository extends JpaRepository<Candidato, Long> {
-
+ 
 }
