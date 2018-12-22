@@ -24,8 +24,6 @@ public class ExperienciaTest {
 		assertTrue(experiencia.getAtual());
 		assertEquals(experiencia.getCargo(),"Analista");
 		assertEquals(experiencia.getEmpresa(),"Empresa");
-//		assertEquals(experiencia.getInicio());//FIXME
-//		assertEquals(experiencia.getFim());
 		assertEquals(experiencia.getSalario(),new Double(3.000));
 		assertEquals(experiencia.getDescricao(),"descricao");
 	}

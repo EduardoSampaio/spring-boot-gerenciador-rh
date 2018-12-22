@@ -36,9 +36,9 @@ public class Candidato implements Serializable {
 	private String senha;
 	@Column(name = "pretensaoSalarial", scale = 2, precision = 5, nullable = false)
 	private Double pretensaoSalarial;
-	@Column(name = "fotoUrl", nullable = false)
+	@Column(name = "fotoUrl", nullable = true)
 	private String fotoUrl;
-	@Column(name = "curriculoUrl", nullable = false)
+	@Column(name = "curriculoUrl", nullable = true)
 	private String curriculoUrl;
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
 	@JoinColumn(name = "endereco_id")

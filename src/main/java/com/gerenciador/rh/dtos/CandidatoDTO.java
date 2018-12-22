@@ -1,27 +1,37 @@
 package com.gerenciador.rh.dtos;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-import com.gerenciador.rh.domain.Endereco;
-import com.gerenciador.rh.domain.Experiencia;
-import com.gerenciador.rh.domain.Telefone;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
 
 public class CandidatoDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
+	@NotEmpty(message = "Por favor preencha o campo nome")
+	@Length(min = 4,max = 30,message = "O campo nome deve ter entre 4 e 30 caracteres")
 	private String nome;
+	@NotEmpty(message = "Por favor preencha o campo sobrenome")
+	@Length(min = 4,max = 30,message = "O campo sobrenome deve ter entre 4 e 30 caracteres")
 	private String sobrenome;
-	private String email;
+	@NotEmpty(message = "Por favor preencha o campo email")
+	@Length(min = 4,max = 30,message = "O campo email deve ter entre 4 e 30 caracteres")
+	private String email;	
+	@NotEmpty(message = "Por favor preencha o campo senha")
+	@Length(min = 4,max = 30,message = "O campo senha deve ter entre 4 e 30 caracteres")
 	private String senha;
+	//@NotEmpty(message = "Por favor preencha o campo pretensao salarial")
 	private Double pretensaoSalarial;
 	private String fotoUrl;
 	private String curriculoUrl;
-	private Endereco endereco;
-	private List<Telefone> telefone;
-	private List<Experiencia> experiencias;
+	private EnderecoDTO endereco;
+	private List<TelefoneDTO> telefones;
+	private List<ExperienciaDTO> experiencias;
 	
 	public CandidatoDTO() {
 	}
@@ -68,28 +78,35 @@ public class CandidatoDTO implements Serializable {
 	public void setFotoUrl(String fotoUrl) {
 		this.fotoUrl = fotoUrl;
 	}
+
 	public String getCurriculoUrl() {
 		return curriculoUrl;
 	}
+
 	public void setCurriculoUrl(String curriculoUrl) {
 		this.curriculoUrl = curriculoUrl;
 	}
-	public Endereco getEndereco() {
+
+	public EnderecoDTO getEndereco() {
 		return endereco;
 	}
-	public void setEndereco(Endereco endereco) {
+
+	public void setEndereco(EnderecoDTO endereco) {
 		this.endereco = endereco;
 	}
-	public List<Telefone> getTelefone() {
-		return telefone;
+
+	public List<TelefoneDTO> getTelefones() {
+		if(telefones == null) {
+			telefones = new ArrayList<>();
+		}
+		return telefones;
 	}
-	public void setTelefone(List<Telefone> telefone) {
-		this.telefone = telefone;
-	}
-	public List<Experiencia> getExperiencias() {
+
+	public List<ExperienciaDTO> getExperiencias() {
+		if(experiencias == null) {
+			experiencias = new ArrayList<>();
+		}
 		return experiencias;
-	}
-	public void setExperiencias(List<Experiencia> experiencias) {
-		this.experiencias = experiencias;
-	}
+	}	
+
 }
