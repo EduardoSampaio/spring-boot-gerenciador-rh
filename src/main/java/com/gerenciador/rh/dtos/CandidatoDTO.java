@@ -1,5 +1,7 @@
 package com.gerenciador.rh.dtos;
 
+import static java.util.stream.Collectors.toList;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +9,8 @@ import java.util.List;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
+
+import com.gerenciador.rh.domain.Candidato;
 
 public class CandidatoDTO implements Serializable {
 	
@@ -36,6 +40,20 @@ public class CandidatoDTO implements Serializable {
 	public CandidatoDTO() {
 	}
 	
+	
+	public CandidatoDTO(Long id,String nome,String sobrenome,String email,String senha,Double pretensaoSalarial, 
+			String fotoUrl, String curriculoUrl) {
+		this.id = id;
+		this.nome = nome;
+		this.sobrenome = sobrenome;
+		this.email = email;
+		this.senha = senha;
+		this.pretensaoSalarial = pretensaoSalarial;
+		this.fotoUrl = fotoUrl;
+		this.curriculoUrl = curriculoUrl;
+	}
+
+
 	public Long getId() {
 		return id;
 	}
@@ -107,6 +125,45 @@ public class CandidatoDTO implements Serializable {
 			experiencias = new ArrayList<>();
 		}
 		return experiencias;
+	}
+
+	@Override
+	public String toString() {
+		return "CandidatoDTO [id=" + id + ", nome=" + nome + ", sobrenome=" + sobrenome + ", email=" + email
+				+ ", senha=" + senha + ", pretensaoSalarial=" + pretensaoSalarial + ", fotoUrl=" + fotoUrl
+				+ ", curriculoUrl=" + curriculoUrl + ", endereco=" + endereco + ", telefones=" + telefones
+				+ ", experiencias=" + experiencias + "]";
 	}	
+	
+	public Candidato toEntity() {
+		Candidato candidato = new Candidato(id,nome,sobrenome,email,senha,pretensaoSalarial,fotoUrl,curriculoUrl);	
+		candidato.setEndereco(endereco.toEntity());
+		candidato.getExperiencias().addAll(experiencias.stream().map(e -> e.toEntity()).collect(toList()));
+		candidato.getTelefone().addAll(telefones.stream().map(t -> t.toEntity()).collect(toList()));
+		return candidato;		
+	}
+	
+	public static CandidatoDTO toDTO(Candidato candidato) {
+		CandidatoDTO dto = new CandidatoDTO(
+				candidato.getId(),candidato.getNome(), 
+				candidato.getSobrenome(), candidato.getEmail(), candidato.getSenha(), 
+				candidato.getPretensaoSalarial(), candidato.getFotoUrl(), 
+				candidato.getCurriculoUrl());	
+		
+		dto.setEndereco(EnderecoDTO.toDTO(candidato.getEndereco()));
+		
+		dto.getExperiencias().addAll(candidato.getExperiencias()
+						.stream().map(ex -> ExperienciaDTO.toDTO(ex))
+						.collect(toList()));
+		
+		dto.getTelefones().addAll(candidato.getTelefone()
+						.stream()
+						.map(t -> TelefoneDTO.toDTO(t))
+						.collect(toList()));
+		
+		System.out.println("DTO " +  dto.toString());
+		
+		return dto;
+	}
 
 }

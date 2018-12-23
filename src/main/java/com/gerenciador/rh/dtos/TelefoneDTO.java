@@ -6,9 +6,12 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.gerenciador.rh.domain.Telefone;
+
 public class TelefoneDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
 	private Long id;
 	@NotEmpty(message = "Por favor preencha o campo cargo")
 	@Length(max = 30,message = "O campo residencial deve ter no máximo 30 caracteres")
@@ -22,6 +25,16 @@ public class TelefoneDTO implements Serializable {
 	public TelefoneDTO() {
 	}
 	
+	public TelefoneDTO(Long id,String residencial,String celular,String profissional) {
+		super();
+		this.id = id;
+		this.residencial = residencial;
+		this.celular = celular;
+		this.profissional = profissional;
+	}
+
+
+
 	public Long getId() {
 		return id;
 	}
@@ -47,4 +60,21 @@ public class TelefoneDTO implements Serializable {
 		this.profissional = profissional;
 	}
 
+	@Override
+	public String toString() {
+		return "TelefoneDTO [id=" + id + ", residencial=" + residencial + ", celular=" + celular + ", profissional="
+				+ profissional + "]";
+	}
+	
+	public Telefone toEntity() {
+		return new Telefone(id, residencial, celular, profissional);
+	}
+	
+	public static TelefoneDTO toDTO(Telefone telefone) {
+		return new TelefoneDTO(
+				telefone.getId(), 
+				telefone.getResidencial(), 
+				telefone.getCelular(),
+				telefone.getProfissional());
+	}
 }

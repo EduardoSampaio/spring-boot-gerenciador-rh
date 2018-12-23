@@ -13,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -40,9 +39,8 @@ public class Candidato implements Serializable {
 	private String fotoUrl;
 	@Column(name = "curriculoUrl", nullable = true)
 	private String curriculoUrl;
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id")
-	@MapsId
 	private Endereco endereco;
 	@OneToMany(mappedBy = "candidato", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Telefone> telefone;
@@ -168,4 +166,13 @@ public class Candidato implements Serializable {
 	public void setSobrenome(String sobrenome) {
 		this.sobrenome = sobrenome;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Candidato [id=" + id + ", nome=" + nome + ", sobrenome=" + sobrenome + ", email=" + email + ", senha="
+				+ senha + ", pretensaoSalarial=" + pretensaoSalarial + ", fotoUrl=" + fotoUrl + ", curriculoUrl="
+				+ curriculoUrl + ", endereco=" + endereco + ", telefone=" + telefone + ", experiencias=" + experiencias
+				+ "]";
+	}	
 }

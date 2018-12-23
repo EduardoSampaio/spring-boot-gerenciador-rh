@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -40,6 +41,7 @@ public class Experiencia implements Serializable{
 	@Column(name = "cargo", length = 30, nullable = false)
 	private String cargo;
 	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name= "candidato_id")
 	private Candidato candidato;
 	
 	public Experiencia() {}

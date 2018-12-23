@@ -1,17 +1,21 @@
 package com.gerenciador.rh.service.impl;
 
+import static java.util.stream.Collectors.toList;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import com.gerenciador.rh.domain.Candidato;
+import com.gerenciador.rh.domain.Experiencia;
+import com.gerenciador.rh.domain.Telefone;
 import com.gerenciador.rh.dtos.CandidatoDTO;
 import com.gerenciador.rh.repositories.CandidatoRepository;
+import com.gerenciador.rh.repositories.ExperienciaRepository;
+import com.gerenciador.rh.repositories.TelefoneRepository;
 import com.gerenciador.rh.service.CandidatoService;
 import com.gerenciador.rh.service.exceptions.ObjectNotFoundException;
 
@@ -19,49 +23,70 @@ import com.gerenciador.rh.service.exceptions.ObjectNotFoundException;
 public class CandidatoServiceImpl  implements CandidatoService {
 	
 	@Autowired
-	private CandidatoRepository repository;
+	private CandidatoRepository candidatoRepository;
 	
 	@Autowired
-	private ModelMapper modelMapper;
+	private ExperienciaRepository experienciaRepository;
+
+	@Autowired
+	private TelefoneRepository telefoneRepository;
 	
 	@Override
 	public void delete(Long id) {
 		findById(id);
-		repository.deleteById(id);	
+		candidatoRepository.deleteById(id);	
 	}
 	@Override
-	@SuppressWarnings("unchecked")
 	public List<CandidatoDTO> findAll() {
-		List<CandidatoDTO> list = new ArrayList<>();
-		return modelMapper.map(repository.findAll(), list.getClass());
+		return candidatoRepository.findAll().stream()
+				.map(c -> CandidatoDTO.toDTO(c))
+				.collect(toList());
 	}
 
 	@Override
 	public CandidatoDTO findById(Long id) {
-		Optional<Candidato> obj = repository.findById(id);
+		Optional<Candidato> obj = candidatoRepository.findById(id);
 	
 		obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Candidato.class.getName()));
 			
-		return modelMapper.map(obj, CandidatoDTO.class);
+		return  CandidatoDTO.toDTO(obj.get());
 
 	}
 
 	@Override
-	public Candidato insert(CandidatoDTO obj) {
-		obj.setId(null);
-		Candidato cadidato = modelMapper.map(obj, Candidato.class);
-		return repository.save(cadidato);
-	}
-
-	@Bean
-	public ModelMapper modelMapper() {
-		return new ModelMapper();
+	public Candidato insert(CandidatoDTO dto) {
+		dto.setId(null);
+		Candidato candidato = dto.toEntity(); 
+		candidato = candidatoRepository.save(candidato);
+	
+		salvarDependencias(candidato);
 		
+		return candidato;
 	}
 
-	@Override
-	public void update(CandidatoDTO obj) {
-		//TODO
+	private void salvarDependencias(Candidato candidato) {
+		List<Telefone> telefones = new ArrayList<>();
+		for (Telefone telefone : candidato.getTelefone()) {
+			telefone.setCandidato(candidato);
+			telefones.add(telefone);
+		}
+		telefoneRepository.saveAll(telefones);
+		
+		List<Experiencia> experiencias  = new ArrayList<>();
+		for (Experiencia experiencia : candidato.getExperiencias()) {
+			experiencia.setCandidato(candidato);
+			experiencias.add(experiencia);
+		}
+		experienciaRepository.saveAll(experiencias);
 	}
+
+
+	@Override
+	public void update(CandidatoDTO dto) {
+		findById(dto.getId());		
+		Candidato candidato = dto.toEntity(); 
+		salvarDependencias(candidato);
+		candidatoRepository.save(candidato);	
+	}	
 }

@@ -6,6 +6,8 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.gerenciador.rh.domain.Endereco;
+
 public class EnderecoDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -33,6 +35,20 @@ public class EnderecoDTO implements Serializable {
 	public EnderecoDTO() {
 	}
 	
+	
+	public EnderecoDTO(Long id,String logradouro,String numero,
+			String cep,String bairro,String cidade,String uf) {
+		super();
+		this.id = id;
+		this.logradouro = logradouro;
+		this.numero = numero;
+		this.cep = cep;
+		this.bairro = bairro;
+		this.cidade = cidade;
+		this.uf = uf;
+	}
+
+
 	public Long getId() {
 		return id;
 	}
@@ -76,4 +92,12 @@ public class EnderecoDTO implements Serializable {
 		this.uf = uf;
 	}
 
+	public Endereco toEntity() {
+		return new Endereco(id, logradouro, numero, cep, bairro, cidade, uf);	
+	}
+	
+	public static EnderecoDTO toDTO(Endereco endereco) {
+		return new EnderecoDTO(endereco.getId(),endereco.getLogradouro(), endereco.getNumero(), 
+				endereco.getCep(), endereco.getBairro(), endereco.getCidade(), endereco.getUf());
+	}
 }

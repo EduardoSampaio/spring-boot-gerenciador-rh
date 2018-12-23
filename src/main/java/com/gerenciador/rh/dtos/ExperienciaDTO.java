@@ -7,6 +7,8 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.gerenciador.rh.domain.Experiencia;
+
 public class ExperienciaDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -28,6 +30,20 @@ public class ExperienciaDTO implements Serializable {
 	@Length(min = 4,max = 30,message = "O campo cargo deve ter entre 4 e 30 caracteres")
 	private String cargo;
 	
+	
+	
+	public ExperienciaDTO(Long id,String empresa,Boolean atual, Date inicio, 
+			Date fim,String descricao,Double salario,String cargo) {
+		this.id = id;
+		this.empresa = empresa;
+		this.atual = atual;
+		this.inicio = inicio;
+		this.fim = fim;
+		this.descricao = descricao;
+		this.salario = salario;
+		this.cargo = cargo;
+	}
+
 	public ExperienciaDTO() {
 	}
 	
@@ -78,5 +94,16 @@ public class ExperienciaDTO implements Serializable {
 	}
 	public void setCargo(String cargo) {
 		this.cargo = cargo;
+	}
+	
+	public Experiencia toEntity() {
+		return new Experiencia(id, empresa, atual, inicio, fim, descricao, salario, cargo); 
+	}
+	
+	public static ExperienciaDTO toDTO(Experiencia experiencia) {
+		return new ExperienciaDTO(
+				experiencia.getId(), experiencia.getEmpresa(), experiencia.getAtual(), 
+				experiencia.getInicio(), experiencia.getFim(), experiencia.getDescricao(),
+				experiencia.getSalario(), experiencia.getCargo());
 	}
 }

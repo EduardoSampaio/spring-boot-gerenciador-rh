@@ -26,7 +26,7 @@ public class Telefone implements Serializable {
 	private String celular;
 	@Column(name = "profissional",length = 15,nullable = true)
 	private String profissional;
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name= "candidato_id")
 	private Candidato candidato;
 	
