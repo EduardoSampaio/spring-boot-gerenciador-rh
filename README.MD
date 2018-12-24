@@ -34,5 +34,3 @@
 
 ## Authors
 - Eduardo Sampaio
-
-C:\Projetos\workspace\spring-boot-gerenciador-rh\.project
