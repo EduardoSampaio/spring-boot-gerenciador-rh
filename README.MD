@@ -30,7 +30,7 @@
 #### Stop container
 - `docker-compose down`
 
-## Continuos Integration
+## Continuous Integration
     - Travis CI
 ## Deploy Heroku
 
