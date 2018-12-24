@@ -75,19 +75,105 @@ public class Candidato implements Serializable {
 		this.curriculoUrl = curriculoUrl;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+	public String getNome() {
+		return nome;
+	}
+
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+
+	public String getSobrenome() {
+		return sobrenome;
+	}
+
+
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public String getSenha() {
+		return senha;
+	}
+
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+
+	public Double getPretensaoSalarial() {
+		return pretensaoSalarial;
+	}
+
+
+	public void setPretensaoSalarial(Double pretensaoSalarial) {
+		this.pretensaoSalarial = pretensaoSalarial;
+	}
+
+
+	public String getFotoUrl() {
+		return fotoUrl;
+	}
+
+
+	public void setFotoUrl(String fotoUrl) {
+		this.fotoUrl = fotoUrl;
+	}
 
 
 	public String getCurriculoUrl() {
 		return curriculoUrl;
 	}
 
-	public String getEmail() {
-		return email;
+
+	public void setCurriculoUrl(String curriculoUrl) {
+		this.curriculoUrl = curriculoUrl;
 	}
+
 
 	public Endereco getEndereco() {
 		return endereco;
 	}
+
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+
+	public void setTelefone(List<Telefone> telefone) {
+		this.telefone = telefone;
+	}
+
+
+	public void setExperiencias(List<Experiencia> experiencias) {
+		this.experiencias = experiencias;
+	}
+
 
 	public List<Experiencia> getExperiencias() {
 		if(experiencias == null) {
@@ -96,73 +182,12 @@ public class Candidato implements Serializable {
 		return experiencias;
 	}
 
-	public String getFotoUrl() {
-		return fotoUrl;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public Double getPretensaoSalarial() {
-		return pretensaoSalarial;
-	}
-
-	public String getSobrenome() {
-		return sobrenome;
-	}
-
 	public List<Telefone> getTelefone() {
 		if(telefone == null) {
 			telefone = new ArrayList<>();
 		}
 		return telefone;
 	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public void setCurriculoUrl(String curriculoUrl) {
-		this.curriculoUrl = curriculoUrl;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
-	public void setFotoUrl(String fotoUrl) {
-		this.fotoUrl = fotoUrl;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public void setPretensaoSalarial(Double pretensaoSalarial) {
-		this.pretensaoSalarial = pretensaoSalarial;
-	}
-
-	public void setSobrenome(String sobrenome) {
-		this.sobrenome = sobrenome;
-	}
-
 
 	@Override
 	public String toString() {
