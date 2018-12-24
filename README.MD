@@ -14,7 +14,8 @@
 
 ### System architecture
 
-[](https://i.imgur.com/5oLxdaX.png)
+### Class Diagram
+![diagram](https://i.imgur.com/5oLxdaX.png)
 
 ### Installing depedencies
 - `mvn install`
