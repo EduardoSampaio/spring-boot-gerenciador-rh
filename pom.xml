@@ -70,12 +70,7 @@
 		    <artifactId>mockito-all</artifactId>
 		    <version>1.10.19</version>
 		    <scope>test</scope>
-		</dependency>	
-		<dependency>
-			<groupId>org.modelmapper.extensions</groupId>
-			<artifactId>modelmapper-spring</artifactId>
-			<version>2.3.0</version>
-		</dependency>	
+		</dependency>		
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
@@ -93,9 +88,10 @@
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<artifactId>spring-boot-maven-plugin</artifactId>			
 			</plugin>
 		</plugins>
+		<finalName>spring-boot-gerenciador-rh</finalName>
 	</build>
 
 </project>

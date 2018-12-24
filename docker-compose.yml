@@ -1,0 +1,23 @@
+version: "3.3"
+services: 
+  mysql:
+    image: centurylink/mysql
+    container_name: mysql-5.7
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: gerenciador-rh
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 1234 
+    volumes:
+      - /data/mysql
+  spring-boot:
+    build: .
+    container_name: gerenciador-rh
+    restart: always
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"

@@ -127,13 +127,9 @@ public class Candidato implements Serializable {
 		return senha;
 	}
 
-
-
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
-
 
 	public void setCurriculoUrl(String curriculoUrl) {
 		this.curriculoUrl = curriculoUrl;
