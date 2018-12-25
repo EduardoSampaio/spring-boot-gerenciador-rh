@@ -15,7 +15,7 @@
 ### System architecture
 ![Imgur](https://i.imgur.com/WKoq12Q.png)
 ### Class Diagram
-![diagram](https://i.imgur.com/5oLxdaX.png)
+![Imgur](https://i.imgur.com/d8VGN3P.png)
 
 ### Installing depedencies
 - `mvn install`
@@ -31,8 +31,6 @@
 - `docker-compose down`
 
 ## Continuous Integration
-    - Travis CI
-## Deploy Heroku
-
+ ![Imgur](https://i.imgur.com/wHCNsnI.png)
 ## Authors
 - Eduardo Sampaio

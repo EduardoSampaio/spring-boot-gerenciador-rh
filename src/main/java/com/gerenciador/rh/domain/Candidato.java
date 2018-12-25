@@ -1,5 +1,7 @@
 package com.gerenciador.rh.domain;
 
+import static javax.persistence.FetchType.EAGER;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +15,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -46,7 +50,11 @@ public class Candidato implements Serializable {
 	private List<Telefone> telefone;
 	@OneToMany(mappedBy = "candidato", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Experiencia> experiencias;
-	
+	@ManyToMany(fetch=EAGER)
+	@JoinTable(name= "Candidato_vagas",
+				joinColumns = @JoinColumn(name="candidato_id"),
+				inverseJoinColumns = @JoinColumn(name="vagas_id"))
+	private List<Vagas> vagas;
 	
 	public Candidato() {
 	}
@@ -188,6 +196,15 @@ public class Candidato implements Serializable {
 		}
 		return telefone;
 	}
+
+	public List<Vagas> getVagas() {
+		if(vagas == null) {
+			vagas = new ArrayList<>();
+		}
+		return vagas;
+	}
+
+
 
 	@Override
 	public String toString() {
