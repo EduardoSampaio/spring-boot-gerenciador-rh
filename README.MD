@@ -17,7 +17,7 @@
 ### Class Diagram
 ![Imgur](https://i.imgur.com/d8VGN3P.png)
 
-### Installing depedencies
+### Installing dependencies
 - `mvn install`
 
 ### Run java application .jar
