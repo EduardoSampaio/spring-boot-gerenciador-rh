@@ -26,6 +26,8 @@ public class Vagas implements Serializable {
 	private String titulo;
 	@Column(name = "localidade", length = 30, nullable = false)
 	private String localidade;
+	@Column(name = "descricao", length = 30, nullable = false)
+	private String descricao;
 	@Column(name = "salario", scale = 5, precision = 2, nullable = false)
 	private Double salario;
 	@ManyToMany(mappedBy="vagas",fetch = EAGER)
@@ -34,11 +36,12 @@ public class Vagas implements Serializable {
 	public Vagas() {
 	}
 
-	public Vagas(Long id, String titulo, String localidade, Double salario) {
+	public Vagas(Long id, String titulo, String localidade,String descricao ,Double salario) {
 		this.id = id;
 		this.titulo = titulo;
 		this.localidade = localidade;
 		this.salario = salario;
+		this.descricao = descricao;
 	}
 
 	@Override
@@ -81,6 +84,14 @@ public class Vagas implements Serializable {
 
 	public String getTitulo() {
 		return titulo;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	public void setTitulo(String titulo) {
