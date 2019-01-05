@@ -1,5 +1,7 @@
 package com.gerenciador.rh.config;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 public class SenhaUtils {
 
 	/**
@@ -8,7 +10,6 @@ public class SenhaUtils {
 	 * @param senha
 	 * @return String
 	 */
-	/*
 	public static String gerarBCrypt(String senha) {
 		if (senha == null) {
 			return senha;
@@ -17,7 +18,7 @@ public class SenhaUtils {
 		BCryptPasswordEncoder bCryptEncoder = new BCryptPasswordEncoder();
 		return bCryptEncoder.encode(senha);
 	}
-	*/
+	
 	/**
 	 * Verifica se a senha é válida. 
 	 * 
@@ -25,10 +26,10 @@ public class SenhaUtils {
 	 * @param senhaEncoded
 	 * @return boolean
 	 */
-	/*
+	
 	public static boolean senhaValida(String senha, String senhaEncoded) {
 		BCryptPasswordEncoder bCryptEncoder = new BCryptPasswordEncoder();
 		return bCryptEncoder.matches(senha, senhaEncoded);
 	}
-	*/
+	
 }
