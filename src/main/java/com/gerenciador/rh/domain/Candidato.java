@@ -21,8 +21,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.gerenciador.rh.config.SenhaUtils;
-
 @Entity
 @Table(name = "Candidatos",indexes= { @Index(columnList="email",unique=true,name="IX_CANDIDATO_EMAIL")})
 public class Candidato implements Serializable {
@@ -79,7 +77,7 @@ public class Candidato implements Serializable {
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.email = email;
-		this.senha =  SenhaUtils.gerarBCrypt(senha);
+		this.senha =  senha;
 		this.pretensaoSalarial = pretensaoSalarial;
 		this.fotoUrl = fotoUrl;
 		this.curriculoUrl = curriculoUrl;
